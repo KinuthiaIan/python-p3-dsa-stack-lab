@@ -58,8 +58,7 @@ below. There are tests for these in the `testing/stack_test.py` file; uncomment 
 - `Stack empty()`: returns true if the `Stack` is empty; false otherwise
 - `Stack full()`: returns true if the `Stack` is full; false otherwise
 - `Stack search(value)`: returns the distance between the top of the stack and the
-  target element if it's present; -1 otherwise. If the target element is at the top of the stack
-  your code should return 0.
+  target element if it's present; -1 otherwise
 
 After you've made these changes, you might want to take another look through
 your code and see if there's any refactoring you can do.
@@ -70,9 +69,27 @@ your code and see if there's any refactoring you can do.
 
 In this lesson, we got some practice building a data structure from scratch by
 implementing a `Stack` class. Recall that the runtime of our data structure will
-depend on what data structure it uses under the hood. For this lab, we used a
+depend on what data structure it uses under the hood. For this lab, we used an
 list as the underlying data structure, which means the runtime for the
 `search()` method is O(n), and the runtime for all of the other methods is O(1).
+
+While our implementation is efficient in terms of time complexity, we have to
+consider space complexity as well. One of the characteristics of an `list` is
+that each of the elements can be accessed directly using the `[]` operator. In
+order for this to work, Python stores all the elements that need to be stored
+ in a continuous block of memory. If we're trying to add an element and we're out
+ of memory where the
+list is located, Python will resize and relocate the continuous block to a bigger
+continuous block of memory. This is expensive
+in terms of memory, which means using a list as our underlying data structure
+is not optimal from the perspective of space complexity.
+
+Given that a `Stack` only uses `push` and `pop` methods, we don't need to use an
+underlying data structure that allows direct access to all of the elements. A
+better choice is a `LinkedList`, because it uses a Dictionary as _its_ underlying data
+structure and Dictionaries do not need to be stored in a continuous block of memory.
+The `LinkedList` is the next data structure we'll learn about. Before we get to
+that, however, let's get a little practice using `Stack`s.
 
 ***
 
